@@ -1,0 +1,45 @@
+Image to Pencil Sketch
+SG
+
+[ ]
+#importing libraries
+import cv2
+import numpy as np
+[ ]
+#reading the original image
+img = cv2.imread("dog.jpg")
+[ ]
+# Displaying Original Image
+from google.colab.patches import cv2_imshow
+cv2_imshow(img)
+
+[ ]
+#b&w
+b_and_w_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+[ ]
+from google.colab.patches import cv2_imshow
+cv2_imshow(b_and_w_image)
+
+[ ]
+#invert
+inverted_image = 255 - b_and_w_image
+[ ]
+#show inverted image
+from google.colab.patches import cv2_imshow
+cv2_imshow(inverted_image)
+
+[ ]
+#blurring the image
+blurred = cv2.GaussianBlur(inverted_image, (21, 21), 0)
+[ ]
+#inverting th blur
+inverted_blurred = 255 - blurred
+[ ]
+#pencil sketch
+pencil_sketch = cv2.divide(b_and_w_image, inverted_blurred, scale=255.0)
+[ ]
+#displaying the sketch
+from google.colab.patches import cv2_imshow
+cv2_imshow(pencil_sketch)
+
+Colab paid products - Cancel contracts here
